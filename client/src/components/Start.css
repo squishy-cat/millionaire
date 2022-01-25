@@ -1,0 +1,14 @@
+.wallpaper{
+    width: 75%;
+    background:
+    url("https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_WhoWantsToBeAMillionaire_UK_image1600w.jpg") center;
+    display: flex;
+    flex-direction: column;
+    /* background-repeat: no-repeat; */
+  }
+  .ball {
+    position: absolute;
+    border-radius: 100%;
+    opacity: 0.7;
+    display: flex;
+  }
