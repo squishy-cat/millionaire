@@ -16,12 +16,17 @@
     "web-vitals": "^1.0.1",
     "webkit-npm": "^3.1.1"
   },
+  
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "clean": "rm -rf public",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
