@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   namespace :api do
-    resources :questions, only: [:index, :show, :create, :delete]
-    resources :answers, only: [:index]
+    resources :questions
+    resources :answers, only: [:index, :create]
 
     get "/questions", to: "questions#index"
     get "/questions/id", to: "questions#show"

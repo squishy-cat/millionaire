@@ -1,4 +1,4 @@
 class Api::QuestionSerializer < ActiveModel::Serializer
-  attributes :body
+  attributes :id, :body
   has_many :answers
 end
