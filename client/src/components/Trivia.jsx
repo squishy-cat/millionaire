@@ -4,12 +4,8 @@ import play from "../sounds/play.mp3";
 import correct from "../sounds/correct.mp3";
 import wrong from "../sounds/wrong.mp3";
 
-export default function Trivia({
-  data,
-  questionNumber,
-  setQuestionNumber,
-  setTimeOut,
-}) {
+export default function Trivia({ data, questionNumber, setQuestionNumber, setTimeOut }) {
+
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [className, setClassName] = useState("answer");
