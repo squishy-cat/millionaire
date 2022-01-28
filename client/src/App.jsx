@@ -10,6 +10,7 @@ function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [earned, setEarned] = useState("$ 0");
   const [data, setData] = useState([]);
+  const [loaded, setLoaded] = useState(false)
 
   const moneyPyramid = useMemo(
     () =>
@@ -42,6 +43,7 @@ function App() {
     fetch("http://localhost:3000/api/questions")
     .then ((r) => r.json())
     .then((questions) => setData(questions))
+    .then(setLoaded(true))
   }
 
   useEffect(fetchData, []);
@@ -72,6 +74,7 @@ function App() {
                     questionNumber={questionNumber}
                     setQuestionNumber={setQuestionNumber}
                     setTimeOut={setTimeOut}
+                    loaded = {loaded}
                   />
                 </div>
               </>
