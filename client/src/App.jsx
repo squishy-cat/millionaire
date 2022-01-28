@@ -3,13 +3,14 @@ import { useEffect, useMemo, useState } from "react";
 import Login from "./components/Login";
 import Timer from "./components/Timer";
 import Trivia from "./components/Trivia";
-
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
-  const [username, setUsername] = useState(null);
+  // const [username, setUsername] = useState(null);
   const [timeOut, setTimeOut] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [earned, setEarned] = useState("$ 0");
+  const [user, setUser] = useState(null);
 
   const data = [
     {
@@ -375,8 +376,8 @@ function App() {
   return (
     
     <div className="app">
-      {!username ? (
-        <Login setUsername={setUsername} />
+      {!user ? (
+        <Login setUser={setUser} />
       ) : (
         <>
           <div className="main">

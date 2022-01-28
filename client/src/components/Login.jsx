@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect, useRef } from "react";
 import useSound from "use-sound";
 import intro from "../sounds/intro.mp3";
+// import { Link } from "react-router-dom";
 
 export default function Login({setPlayer, setUser, setUsername}) {
     
@@ -33,13 +34,13 @@ export default function Login({setPlayer, setUser, setUsername}) {
     
     const inputRef = useRef();
 
-    // const handleClick = () => {
-    // inputRef.current.value && setUsername(inputRef.current.value);
-    // };
+    const handleClick = () => {
+    inputRef.current.value && setUsername(inputRef.current.value);
+    };
 
     const colors = ["#3CC157", "#2AA7FF", "#1B1B1B", "#FCBC0F", "#F85F36"];
 
-    const numBalls = 10;
+    const numBalls = 5;
     const balls = [];
 
     for (let i = 0; i < numBalls; i++) {
@@ -85,7 +86,7 @@ export default function Login({setPlayer, setUser, setUsername}) {
             <div className= "wallpaper"></div>
             <div className="start">
                 <span className="loginTitle">Today's Contestant!</span>
-                <form action="" className="start">
+                <form action="" className="login">
                     <input 
                         type="text" 
                         className="loginInput" 
@@ -94,10 +95,10 @@ export default function Login({setPlayer, setUser, setUsername}) {
                         ref={inputRef}
                     />
                     
-                    <button className="loginButton" onClick={handleLoginClick}>Login</button>
+                    <button className="loginButton" onClick={handleLoginClick || handleClick}>Login</button>
                 </form>
-                {/* <button className="loginRegisterButton">Register</button>
-                <Link className="link" to="/register">Register</Link> */}
+                <button className="loginRegisterButton">Register</button>
+                {/* <Link className="link" to="/register">Register</Link> */}
             </div>
         </>
     )
