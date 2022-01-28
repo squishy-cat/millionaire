@@ -4,7 +4,7 @@ import play from "../sounds/play.mp3";
 import correct from "../sounds/correct.mp3";
 import wrong from "../sounds/wrong.mp3";
 
-export default function Trivia({ data, questionNumber, setQuestionNumber, setTimeOut }) {
+export default function Trivia({ data, questionNumber, setQuestionNumber, setTimeOut, loaded }) {
 
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -61,19 +61,23 @@ export default function Trivia({ data, questionNumber, setQuestionNumber, setTim
     // }, 5000);
       })
   };
-  return (
-    <div className="trivia">
-      <div className="question">{question?.question}</div>
-      <div className="answers">
-        {question?.answers.map((a) => (
-          <div
-            className={selectedAnswer === a ? className : "answer"}
-            onClick={() => !selectedAnswer && handleClick(a)}
-          >
-            {a.text}
-          </div>
-        ))}
+  if (loaded) {
+    return (
+      <div className="trivia">
+        <div className="question">{question?.body}</div>
+        <div className="answers">
+          {question?.answers.map((a) => (
+            <div
+              className={selectedAnswer === a ? className : "answer"}
+              onClick={() => !selectedAnswer && handleClick(a)}
+            >
+              {a.text}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (<h2>Loading...</h2>)
+  }
 }

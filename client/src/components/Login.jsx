@@ -17,7 +17,7 @@ export default function Login({setPlayer, setUser, setUsername}) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            player_name: nameForm,
+            username: nameForm,
           }),
         })
           .then((r) => r.json())
