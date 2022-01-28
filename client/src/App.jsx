@@ -1,8 +1,9 @@
 import "./App.css";
 import { useEffect, useMemo, useState } from "react";
-import Start from "./components/Start";
+import Login from "./components/Login";
 import Timer from "./components/Timer";
 import Trivia from "./components/Trivia";
+
 
 function App() {
   const [username, setUsername] = useState(null);
@@ -375,7 +376,7 @@ function App() {
     
     <div className="app">
       {!username ? (
-        <Start setUsername={setUsername} />
+        <Login setUsername={setUsername} />
       ) : (
         <>
           <div className="main">
