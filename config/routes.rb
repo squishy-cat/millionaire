@@ -15,4 +15,14 @@ Rails.application.routes.draw do
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 
+  #login setup
+  root 'sessions#home'
+
+  resources :users, only: [:new, :create, :update, :show, :destroy]
+
+  # Login routes
+  post "/login", to: "sessions#create"
+  get "/me", to: "users#show"
+  delete "/logout", to: "sessions#destroy"
+
 end

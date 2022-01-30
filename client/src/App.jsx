@@ -5,12 +5,13 @@ import Timer from "./components/Timer";
 import Trivia from "./components/Trivia";
 
 function App() {
-  const [username, setUsername] = useState(null);
   const [timeOut, setTimeOut] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [earned, setEarned] = useState("$ 0");
   const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false)
+  const [user, setUser] = useState(null);
+
 
   const moneyPyramid = useMemo(
     () =>
@@ -34,11 +35,15 @@ function App() {
     []
   );
 
+  // rendering reward pyramid
+
   useEffect(() => {
     questionNumber > 1 &&
       setEarned(moneyPyramid.find((m) => m.id === questionNumber - 1).amount);
   }, [questionNumber, moneyPyramid]);
 
+
+  // fetching question + answer data
   const fetchData = () => {
     fetch("http://localhost:3000/api/questions")
     .then ((r) => r.json())
@@ -48,11 +53,29 @@ function App() {
 
   useEffect(fetchData, []);
 
+
+  // Handling authentication, setting User state
+  useEffect(() => {
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
+  // Logout actions below  
+  function handleLogout() {
+    fetch("/logout", {
+      method: "DELETE",
+    })
+    .then(() => setUser(null)); 
+  }
+
   return (
     
     <div className="app">
-      {!username ? (
-        <Start setUsername={setUsername} />
+      {!user ? (
+        <Start setUser={setUser} />
       ) : (
         <>
           <div className="main">
@@ -81,6 +104,9 @@ function App() {
             )}
           </div>
           <div className="pyramid">
+            <button type="button" class="logoutButton" onClick={handleLogout}>
+            Log out
+            </button>
             <ul className="moneyList">
               {moneyPyramid.map((m) => (
                 <li 
