@@ -80,4 +80,3 @@ export default function Trivia({ data, questionNumber, setQuestionNumber, setTim
   } else {
     return (<h2>Loading...</h2>)
   }
-}

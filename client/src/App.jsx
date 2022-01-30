@@ -12,6 +12,7 @@ function App() {
   const [loaded, setLoaded] = useState(false)
   const [user, setUser] = useState(null);
 
+
   const moneyPyramid = useMemo(
     () =>
       [
@@ -41,8 +42,8 @@ function App() {
       setEarned(moneyPyramid.find((m) => m.id === questionNumber - 1).amount);
   }, [questionNumber, moneyPyramid]);
 
-  // fetching question + answer data
 
+  // fetching question + answer data
   const fetchData = () => {
     fetch("http://localhost:3000/api/questions")
     .then ((r) => r.json())
@@ -51,6 +52,7 @@ function App() {
   }
 
   useEffect(fetchData, []);
+
 
   // Handling authentication, setting User state
   useEffect(() => {
@@ -61,8 +63,7 @@ function App() {
     });
   }, []);
 
-  // Logout actions below, need to set up logout button
-  
+  // Logout actions below  
   function handleLogout() {
     fetch("/logout", {
       method: "DELETE",
