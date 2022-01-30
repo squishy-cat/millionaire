@@ -5,7 +5,6 @@ import Timer from "./components/Timer";
 import Trivia from "./components/Trivia";
 
 function App() {
-  const [username, setUsername] = useState(null);
   const [timeOut, setTimeOut] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [earned, setEarned] = useState("$ 0");
@@ -63,19 +62,13 @@ function App() {
   }, []);
 
   // Logout actions below, need to set up logout button
-  // function Navbar({ onLogout }) {
-  //   function handleLogout() {
-  //     fetch("/logout", {
-  //       method: "DELETE",
-  //     }).then(() => onLogout());
-  //   }
   
-  //   return (
-  //     <header>
-  //       <button onClick={handleLogout}>Logout</button>
-  //     </header>
-  //   );
-  // }
+  function handleLogout() {
+    fetch("/logout", {
+      method: "DELETE",
+    })
+    .then(() => setUser(null)); 
+  }
 
   return (
     
@@ -110,6 +103,9 @@ function App() {
             )}
           </div>
           <div className="pyramid">
+            <button type="button" class="logoutButton" onClick={handleLogout}>
+            Log out
+            </button>
             <ul className="moneyList">
               {moneyPyramid.map((m) => (
                 <li 
